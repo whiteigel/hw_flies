@@ -16,7 +16,7 @@ def make_cook_book():
 def create_shop_list(cook_book, courses, person_count):
     shop_list = {}
     for dish in courses:
-        for ingr in cook_book[dish]:
+         for ingr in cook_book[dish]:
             ingr['quantity'] = (int(ingr['quantity']) * int(person_count))
             shop_list_item = {'measure':ingr['measure'],'quantity':ingr['quantity']}
             if ingr['ingredient_name'] not in shop_list:
@@ -29,7 +29,8 @@ def make_shop_list():
     cook_book = make_cook_book()
     person_count = int(input('Введите число гостей: '))
     courses = input('Введите список блюд через запятую: ').split(", ")
-    shop_list = create_shop_list(cook_book, courses, person_count)
+    courses_cap = [name.capitalize() for name in courses]
+    shop_list = create_shop_list(cook_book, courses_cap, person_count)
     return f'Вам необходимо купить следующие продукты: {shop_list}'
 
 print(make_shop_list())
